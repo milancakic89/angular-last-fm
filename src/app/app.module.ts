@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { AlbumCardComponent } from './albums/album-card/album-card.component';
 import { ModalComponent } from './modal/modal.component';
 import { HomeComponent } from './home/home.component';
+import {AppService } from './app.service';
 
 
 const appRoutes: Routes = [
@@ -32,7 +33,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
