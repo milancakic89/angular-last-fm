@@ -8,7 +8,7 @@ import { AppService } from '../app.service';
 })
 export class ModalComponent implements OnInit {
 
-  isModalOpened: boolean = true;
+  isModalOpened: boolean = false;
   constructor(private service: AppService) { }
 
   ngOnInit(): void {

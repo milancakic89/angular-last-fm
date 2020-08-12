@@ -8,16 +8,16 @@ import { HeaderComponent } from './header/header.component';
 import { AlbumCardComponent } from './albums/album-card/album-card.component';
 import { ModalComponent } from './modal/modal.component';
 import { HomeComponent } from './home/home.component';
-import {AppService } from './app.service';
+import { AppService } from './app.service';
+import { RockstarCardComponent } from './home/rockstar-card/rockstar-card.component';
 
 
 const appRoutes: Routes = [
   { path: 'albums', component: AlbumsComponent },
-  { path: '', component: AlbumsComponent }
+  { path: 'albums/:rockstar', component: AlbumsComponent },
+  { path: '', component: HomeComponent }
 
 ]
-
-
 
 @NgModule({
   declarations: [
@@ -26,7 +26,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     AlbumCardComponent,
     ModalComponent,
-    HomeComponent
+    HomeComponent,
+    RockstarCardComponent
   ],
   imports: [
     BrowserModule,
