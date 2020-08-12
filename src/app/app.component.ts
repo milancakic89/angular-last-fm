@@ -7,11 +7,11 @@ import { AppService } from './app.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  modalOpened: boolean = true;
-  constructor(private service: AppService) {
+  
+  constructor() {
 
   }
   ngOnInit() {
-    this.service.test()
+    
   }
 }

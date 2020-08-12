@@ -1,1 +1,38 @@
-<div class="modal__wrapper" (click)="onToggleModal()"></div>
+<div class="modal__wrapper" (click)="onRemoveModal()" *ngIf=" isModalOpened">
+  <span>X</span>
+  <div class="row">
+    <div class="col-sm-8 p-0 modal__wrapper__details">
+      <h2 class="p-2">Album Title</h2>
+      <p class="p-2">Tracklist</p>
+      <ul class="list-group p-3 tracklist">
+        <li class="list-group-item modal__wrapper__details__item" (click)="onSelectTrack()">
+          <a class="tracklist__link" href="https://www.google.com">01. The song name</a>
+        </li>
+        <li class="list-group-item modal__wrapper__details__item" (click)="onSelectTrack()">
+          <a class="tracklist__link" href="https://www.google.com">02. The song name</a>
+        </li>
+        <li class="list-group-item modal__wrapper__details__item" (click)="onSelectTrack()">
+          <a class="tracklist__link" href="https://www.google.com">03. The song name</a>
+        </li>
+        <li class="list-group-item modal__wrapper__details__item" (click)="onSelectTrack()">
+          <a class="tracklist__link" href="https://www.google.com">04. The song name</a>
+        </li>
+        <li class="list-group-item modal__wrapper__details__item" (click)="onSelectTrack()">
+          <a class="tracklist__link" href="https://www.google.com">05. The song name</a>
+        </li>
+        <li class="list-group-item modal__wrapper__details__item" (click)="onSelectTrack()">
+          <a class="tracklist__link" href="https://www.google.com">06. The song name</a>
+        </li>
+        <li class="list-group-item modal__wrapper__details__item" (click)="onSelectTrack()">
+          <a class="tracklist__link" href="https://www.google.com">07. The song name</a>
+        </li>
+        <li class="list-group-item modal__wrapper__details__item" (click)="onSelectTrack()">
+          <a class="tracklist__link" href="https://www.google.com">08. The song name</a>
+        </li>
+
+      </ul>
+
+
+    </div>
+  </div>
+</div>

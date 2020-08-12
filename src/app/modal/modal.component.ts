@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-modal',
@@ -6,15 +7,19 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
-@Input() modalOpened: boolean;
 
-  toggleModal: boolean = true;
-  constructor() { }
+  isModalOpened: boolean = true;
+  constructor(private service: AppService) { }
 
   ngOnInit(): void {
+    this.service.modalEmiter.subscribe((modal: boolean) => {
+      this.isModalOpened = modal;
+    })
   }
-  onToggleModal(){
-    this.toggleModal = !this.toggleModal;
+  onRemoveModal() {
+    this.service.modalEmiter.emit(false);
   }
-
+  onSelectTrack() {
+    console.log('track selected')
+  }
 }
