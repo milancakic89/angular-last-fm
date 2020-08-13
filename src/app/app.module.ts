@@ -10,11 +10,12 @@ import { ModalComponent } from './modal/modal.component';
 import { HomeComponent } from './home/home.component';
 import { AppService } from './app.service';
 import { RockstarCardComponent } from './home/rockstar-card/rockstar-card.component';
+import { RockstarDetailsComponent } from './home/rockstar-details/rockstar-details.component';
 
 
 const appRoutes: Routes = [
   { path: 'albums', component: AlbumsComponent },
-  { path: 'albums/:rockstar', component: AlbumsComponent },
+  { path: 'albums/:rockstar', component: RockstarDetailsComponent },
   { path: '', component: HomeComponent }
 
 ]
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
     AlbumCardComponent,
     ModalComponent,
     HomeComponent,
-    RockstarCardComponent
+    RockstarCardComponent,
+    RockstarDetailsComponent
   ],
   imports: [
     BrowserModule,

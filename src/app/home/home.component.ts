@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AppService } from '../app.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
@@ -23,21 +23,6 @@ export class HomeComponent implements OnInit {
   constructor(private service: AppService, private http: HttpClient) { }
 
   ngOnInit() {
-    /*
-        this.http.get(this.URL)
-          .subscribe((topStars: { topartists: { artist } }) => {
-            console.log(topStars.topartists.artist)
-            const artists = topStars.topartists.artist;
-            let artistsArray = []
-            for (const key in artists) {
-              if (Object.prototype.hasOwnProperty.call(artists, key)) {
-                artistsArray.push(artists[key]);
-              }
-            }
-            this.service.saveRockStars(artistsArray);
-            this.artists = artistsArray.splice(0, this.displayLimit);
-          })    */
-    let filter: any[] = [];
     this.http.get(this.URL)
       .subscribe((artistsArray: { artists: { artist: any[] } }) => {
         let artists = artistsArray.artists.artist
@@ -54,6 +39,7 @@ export class HomeComponent implements OnInit {
         this.artists = artists.splice(0, this.displayLimit);
       })
   }
+
   //listen view port for more items
   onScroll() {
     if (this.loadMore.nativeElement) {
@@ -71,8 +57,6 @@ export class HomeComponent implements OnInit {
         }
       }
     }
-
-
   }
 
 }

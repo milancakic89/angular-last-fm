@@ -1,8 +1,8 @@
 <div class="row card__wrapper">
   <div class="card__wrapper__front text-center">
-    <img src="https://upload.wikimedia.org/wikipedia/en/c/c1/Beerbongs_%26_Bentleys_by_Post_Malone.png"
-      alt="Album Cover" style="min-height: 240px;" class="card__wrapper__img" />
-    <h4 class="text-left pl-3">Album Name</h4>
+    <img src="{{album.image[3]['#text']}}" alt="Album Cover" style="min-height: 230px; max-height: 240px;"
+      class="card__wrapper__img" />
+    <h4 class="text-left pl-3">{{album?.name}}</h4>
   </div>
   <div class="card__wrapper__back text-center">
     <button class="btn btn-primary card__wrapper__back__button" (click)="onToggleModal()">Details</button>

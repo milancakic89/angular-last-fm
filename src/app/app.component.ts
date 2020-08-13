@@ -12,7 +12,6 @@ import { map } from 'rxjs/operators';
 export class AppComponent implements OnInit {
 
   
-  topAlbumsURL = ``;
   constructor(private service: AppService) {
 
   }

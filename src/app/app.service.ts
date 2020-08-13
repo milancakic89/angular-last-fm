@@ -6,7 +6,7 @@ import { environment } from '../environments/environment';
 
 export class AppService {
 
-  modalEmiter = new EventEmitter<boolean>();
+  modalEmiter = new EventEmitter<any>();
 
   loadMorePosts: boolean = true;
 

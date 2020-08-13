@@ -1,0 +1,14 @@
+<div class="row" *ngIf="rockstar">
+  <div class="col-sm-12">
+    <h1>{{rockstar["@attr"].artist}}</h1>
+    <h4>Album List</h4>
+    <hr>
+  </div>
+
+  <div class="col-sm-8 album mb-3">
+    <ul class="list-group">
+      <li class="list-group-item album__list" *ngFor="let album of rockstar.album">{{ album.name }}</li>
+    </ul>
+  </div>
+
+</div>

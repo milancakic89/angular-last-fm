@@ -1,12 +1,11 @@
-<div class="modal__wrapper" (click)="onRemoveModal()" *ngIf=" isModalOpened">
-  <span>X</span>
+<div class="modal__wrapper" (click)="onRemoveModal()" *ngIf="isModalOpened">
   <div class="row">
     <div class="col-sm-6 p-0 modal__wrapper__details">
-      <h2 class="p-2">Album Title</h2>
+      <h2 class="p-2">{{ album }}</h2>
       <p class="p-2">Tracklist</p>
-      <ul class="list-group p-3 tracklist">
-        <li class="list-group-item modal__wrapper__details__item" (click)="onSelectTrack()">
-          <a class="tracklist__link" href="https://www.google.com">01. The song name</a>
+      <ul class="list-group p-3 tracklist" *ngIf="tracklist">
+        <li class="list-group-item modal__wrapper__details__item" *ngFor="let track of tracklist; let i = index;">
+          <a class="tracklist__link" href="{{track.url}}">{{ i+1 }}. {{track?.name}}</a>
         </li>
       </ul>
     </div>
