@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
+import { environment } from '../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +10,13 @@ import { AppService } from './app.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
   
-  constructor() {
+  topAlbumsURL = ``;
+  constructor(private service: AppService) {
 
   }
   ngOnInit() {
-    
+   
   }
 }
