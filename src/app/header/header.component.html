@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-secondary mb-3">
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
   <div class="container">
     <a class="navbar-brand" href="#">Angular Last FM</a>
     <button class="navbar-toggler" (click)="onToggleMenu()">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" [ngClass]="isMenuOpened ? 'd-block' : ''" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav w-100">
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
           (click)="onToggleMenu()">
           <a class="nav-link" routerLink="">Home</a>
@@ -13,12 +13,9 @@
         <li class="nav-item" routerLinkActive="active" (click)="onToggleMenu()">
           <a class="nav-link" routerLink="/albums">Albums</a>
         </li>
+        <app-search></app-search>
       </ul>
-
-      <form class="form-inline ml-auto">
-        <input type="text" class="form-control mr-2 mb-0" placeholder="Search">
-        <button class="btn btn-primary">Search</button>
-      </form>
     </div>
+
   </div>
 </nav>

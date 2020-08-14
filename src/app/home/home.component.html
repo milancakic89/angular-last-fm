@@ -1,10 +1,11 @@
-<div class="row" (window:scroll)="onScroll()">
-  <div class="col-sm-4 album-wrapper mx-auto" *ngFor="let rockstar of artists; let i = index">
-    <app-rockstar-card [rockStar]="rockstar" [rank]='i + 1'></app-rockstar-card>
+<div class="container">
+  <div class="row mt-3" (window:scroll)="onScroll()">
+    <div class="col-sm-4 album-wrapper mx-auto" *ngFor="let rockstar of artists; let i = index">
+      <app-rockstar-card [rockStar]="rockstar"></app-rockstar-card>
+    </div>
+    <div class="col-sm-12 text-center">
+      <div class="loader mt-3" #loadMore [ngClass]="loadMorePosts ? 'd-block' : 'd-none'">Loading...</div>
+      <span [ngClass]="loadMorePosts ? 'd-none' : 'd-block h5 pb-3'">No more Posts</span>
+    </div>
   </div>
-  <div class="col-sm-12 text-center">
-    <div class="loader mt-3" #loadMore [ngClass]="loadMorePosts ? 'd-block' : 'd-none'">Loading...</div>
-    <span [ngClass]="loadMorePosts ? 'd-none' : 'd-block h5 pb-3'">No more Posts</span>
-  </div>
-
 </div>

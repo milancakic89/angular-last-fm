@@ -1,3 +1,9 @@
-.card__wrapper__rank{
-  background-color: gold;
+.card__wrapper{
+    &__rank{
+      background-color: gold; 
+    }
+    &__details{
+      max-height: 250px;
+      font-size: 14px;
+    }
 }

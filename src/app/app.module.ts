@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AlbumsComponent } from './albums/albums.component';
@@ -11,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { AppService } from './app.service';
 import { RockstarCardComponent } from './home/rockstar-card/rockstar-card.component';
 import { RockstarDetailsComponent } from './home/rockstar-details/rockstar-details.component';
+import { SearchComponent } from './search/search.component';
 
 
 const appRoutes: Routes = [
@@ -29,11 +31,13 @@ const appRoutes: Routes = [
     ModalComponent,
     HomeComponent,
     RockstarCardComponent,
-    RockstarDetailsComponent
+    RockstarDetailsComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [AppService],

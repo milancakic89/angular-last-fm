@@ -18,13 +18,15 @@ export class AppService {
   saveRockStars(rockStars: any) {
     this.topRockStars = [...rockStars];
   }
-  fetchRockAlbums() {
-    console.log('okey')
+  resetInfiniteScroll(){
+    this.loadMorePosts = true;
   }
   checkForMorePosts() {
     return this.loadMorePosts;
   }
+
   loadMoreRockStars(amountToDisplay: number) {
+    console.log('loadMoreRockStars: ' + amountToDisplay)
     if (amountToDisplay > this.topRockStars.length) {
       this.loadMorePosts = false;
       return this.topRockStars;

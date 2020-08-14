@@ -21,7 +21,7 @@ export class RockstarDetailsComponent implements OnInit {
     this.http.get(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${this.rockstarParam}&api_key=${environment.API_KEY}&format=json`)
       .subscribe((artistData: { topalbums: any }) => {
         this.rockstar = artistData.topalbums
-        console.log(this.rockstar)
+        console.log(this.rockstar.album)
       })
   }
 

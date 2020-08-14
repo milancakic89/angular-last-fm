@@ -1,0 +1,28 @@
+@import '../../scss//variables';
+
+.search{
+  position: relative;
+  max-width: 400px;
+  width: 350px;
+    &__results{
+      width: 500px;
+      max-height: 400px;
+      min-height: 60px;
+      overflow-y: auto;
+      position: absolute;
+      background-color: #fff;
+      transform: translateY(100%);
+      z-index: 2;
+      left:0;
+      bottom: 0;
+      border:1px solid gray;
+      border-top: none;
+      border-bottom-left-radius: 10px ;
+       border-bottom-right-radius: 10px ;
+    }
+    &__item:hover{
+      cursor: pointer;
+      background-color: $tracklistItem;
+
+    }
+}

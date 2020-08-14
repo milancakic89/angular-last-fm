@@ -1,6 +1,8 @@
-<div class="row">
-
-  <div class="col-sm-4 album-wrapper mx-auto" *ngFor="let album of albums">
-    <app-album-card [album]="album"></app-album-card>
+<app-modal></app-modal>
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-sm-4 album-wrapper mx-auto" *ngFor="let album of albums">
+      <app-album-card [album]="album"></app-album-card>
+    </div>
   </div>
 </div>
