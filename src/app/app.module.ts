@@ -13,6 +13,7 @@ import { AppService } from './app.service';
 import { RockstarCardComponent } from './home/rockstar-card/rockstar-card.component';
 import { RockstarDetailsComponent } from './home/rockstar-details/rockstar-details.component';
 import { SearchComponent } from './search/search.component';
+import { TrackComponent } from './modal/track/track.component';
 
 
 const appRoutes: Routes = [
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
     HomeComponent,
     RockstarCardComponent,
     RockstarDetailsComponent,
-    SearchComponent
+    SearchComponent,
+    TrackComponent
   ],
   imports: [
     BrowserModule,

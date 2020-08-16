@@ -2,12 +2,12 @@
   <input type="text" #search (keyup)="onSearch($event)" value="" autocomplete="off" name="search"
     class="form-control mr-2 mb-0 w-100" placeholder="Search song">
   <div class="search__results" *ngIf="showSearchDiv">
-    <ul class="list-group" *ngIf="searchResults">
-      <li class="list-group-item search__item" *ngFor="let track of searchResults">
+    <ul class="list-group" *ngIf="tracklist">
+      <li class="list-group-item search__item" *ngFor="let track of tracklist">
         <a href="{{track?.url}}">{{track?.name}}</a>
       </li>
     </ul>
-    <ul class="list-group" *ngIf="!searchResults.length">
+    <ul class="list-group" *ngIf="!tracklist.length">
       <li class="list-group-item">
         <a>No results Fount</a>
       </li>

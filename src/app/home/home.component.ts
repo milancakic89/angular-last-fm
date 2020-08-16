@@ -1,7 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, HostListener } from '@angular/core';
+import { fromEvent } from 'rxjs';
+import { map, debounceTime, filter } from 'rxjs/operators';
 import { AppService } from '../app.service';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { ApiURL } from '../shared/apiURL';
+import { Rockstar } from '../shared/rockstar.model';
 
 
 @Component({
@@ -11,44 +14,47 @@ import { environment } from '../../environments/environment';
 })
 export class HomeComponent implements OnInit {
   @ViewChild('loadMore') loadMore: ElementRef;
-
-  uri = `http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag=rock&api_key=${environment.API_KEY}&format=json`
-  URL = `http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=${environment.API_KEY}&format=json`;
+  @ViewChild('home') home: ElementRef;
 
   loading: boolean = false;
   loadMorePosts: boolean = true;
-  artists: any[] = [];
+  rockstars: Rockstar[] = [];
   displayLimit: number = 9;
+  genre: string = 'rock';
 
   constructor(private service: AppService, private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get(this.uri)
-      .subscribe((artistsArray: { topartists: { artist: any[] } }) => {
-        let artists = artistsArray.topartists.artist
-        this.service.saveRockStars(artists);
-        this.artists = this.service.loadMoreRockStars(this.displayLimit)
-        console.log(artists)
+    fromEvent(window, 'scroll')
+      .pipe(
+        map(event => window.scrollY),
+        filter(current => current >= document.body.clientHeight - window.innerHeight),
+        debounceTime(200)
+      ).subscribe(windowPositionY => {
+        let loadMoreElemY = this.loadMore.nativeElement.getBoundingClientRect().bottom;
+        if (this.loadMore.nativeElement) {
+          if (loadMoreElemY < (windowPositionY - 400) && !this.loading && this.loadMorePosts) {
+            this.loadMorePosts = this.service.checkForMorePosts();
+            if (this.loadMorePosts) {
+              this.loading = true;
+              this.displayLimit = this.displayLimit + 9;
+              this.rockstars = this.service.loadMoreRockStars(this.displayLimit)
+              this.loading = false;
+            }
+          }
+        }
+      });
+
+    this.http.get(ApiURL.getRockstarURL())
+      .subscribe((artistsArray: { topartists: { artist: Rockstar[] } }) => {
+        const rockstars: Rockstar[] = [];
+        artistsArray.topartists.artist.forEach((rockstar: Rockstar) => {
+          rockstars.push(new Rockstar(rockstar.name, rockstar['@attr'].rank, rockstar.image))
+        })
+        this.service.saveRockStars(rockstars);
+        this.rockstars = this.service.loadMoreRockStars(this.displayLimit)
       })
   }
-  //listen view port for more items
-  onScroll() {
-    console.log(this.loadMore.nativeElement)
-    if (this.loadMore.nativeElement) {
-      let elem = this.loadMore.nativeElement.getBoundingClientRect();
-      if (elem.bottom <= (window.innerHeight + 40 || document.documentElement.clientHeight + 40) && !this.loading && this.loadMorePosts) {
-        this.loadMorePosts = this.service.checkForMorePosts();
-        if (this.loadMorePosts) {
-          this.loading = true;
-          this.displayLimit = this.displayLimit + 9;
-          //show loading for a short period of time before showing
-          setTimeout(() => {
-            this.artists = this.service.loadMoreRockStars(this.displayLimit)
-            this.loading = false;
-          }, 300)
-        }
-      }
-    }
-  }
+
 
 }

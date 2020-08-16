@@ -26,22 +26,11 @@
            overflow-y: auto;
            background-color: $tracklist;
          }
-         &__item:hover{
-           background-color: $tracklistItemHover;
-           color: #fff;
-           cursor: pointer;
-              a{
-                color: #fff;
-              }
-         }
+
     }
    
 }
-.tracklist{
-    &__link{
-      text-decoration: none;
-    }
-}
+
 @keyframes modalOpening{
   0%{
     width: 100%;

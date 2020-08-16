@@ -1,0 +1,16 @@
+@import "../../../scss/variables";
+
+.track{
+   &__link{
+      text-decoration: none;
+    } 
+}
+
+.track:hover{
+  background-color: $tracklistItemHover;
+  color: #fff;
+  cursor: pointer;
+      a{
+        color: #fff;
+      }  
+}

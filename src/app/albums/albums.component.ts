@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { ApiURL } from '../shared/apiURL';
+import { Album } from '../shared/album.model';
 
 @Component({
   selector: 'app-albums',
@@ -9,14 +10,17 @@ import { environment } from '../../environments/environment';
 })
 export class AlbumsComponent implements OnInit {
 
-  albums: any[] = [];
+  albums: Album[] = [];
+
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get(`http://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=rock&api_key=${environment.API_KEY}&format=json`)
-      .subscribe((data: { albums: { album: any[] } }) => {
-        this.albums = data.albums.album.splice(0, 9);
+    this.http.get(ApiURL.getTopAlbumsURL())
+      .subscribe((data: { albums: { album: Album[] } }) => {
+        const albums = data.albums.album.splice(0, 9);
+        albums.forEach((album: Album) => {
+          this.albums.push(new Album(album.name, album.image, album.artist))
+        })
       })
   }
-
 }

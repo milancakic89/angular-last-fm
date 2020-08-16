@@ -1,10 +1,10 @@
-<div class="container">
-  <div class="row mt-3" (window:scroll)="onScroll()">
-    <div class="col-sm-4 album-wrapper mx-auto" *ngFor="let rockstar of artists; let i = index">
-      <app-rockstar-card [rockStar]="rockstar"></app-rockstar-card>
+<div class="container" #home>
+  <div class="row mt-3">
+    <div class="col-sm-4 album-wrapper mx-auto" *ngFor="let rockstar of rockstars">
+      <app-rockstar-card [rockstar]="rockstar"></app-rockstar-card>
     </div>
-    <div class="col-sm-12 text-center">
-      <div class="loader mt-3" #loadMore [ngClass]="loadMorePosts ? 'd-block' : 'd-none'">Loading...</div>
+    <div class="col-sm-12 text-center loader__wrapper">
+      <div class="loader mt-3" [ngClass]="loadMorePosts ? 'd-block' : 'd-none'" #loadMore>Loading...</div>
       <span [ngClass]="loadMorePosts ? 'd-none' : 'd-block h5 pb-3'">No more Posts</span>
     </div>
   </div>

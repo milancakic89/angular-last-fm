@@ -1,18 +1,18 @@
 <div class="row card__wrapper">
   <div class="card__wrapper__front text-center" (mouseenter)="fetchDetails()">
-    <img src="{{rockStar.image[3]['#text']}}" style="max-height: 240px; max-width: 240px;min-height: 200px;"
+    <img src="{{rockstar?.image[3]['#text']}}" style="max-height: 240px; max-width: 240px;min-height: 200px;"
       alt="Rockstar" class="card__wrapper__img" />
-    <h5 class="text-left pl-3">{{ rockStar.name }}</h5>
+    <h5 class="text-left pl-3">{{ rockstar?.name }}</h5>
     <div class="text-left">
-      <span class="card__wrapper__rank px-3 h3">{{ rockStar['@attr'].rank }}</span>
+      <span class="card__wrapper__rank px-3 h3">{{ rockstar?.rank }}</span>
     </div>
   </div>
   <div class="card__wrapper__back text-center p-2">
     <div class="h-75 overflow-scroll">
       <summary class="text-left p-2 border rounded">
-        <span class="card__wrapper__details">{{details}}</span>
+        <span class="card__wrapper__details">{{details?.description}}</span>
       </summary>
     </div>
-    <a class="btn btn-primary" routerLink="/albums/{{ rockStar.name }}">View Albums</a>
+    <a class="btn btn-primary" routerLink="/albums/{{ rockstar?.name }}">View Albums</a>
   </div>
 </div>
