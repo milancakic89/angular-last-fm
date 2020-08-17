@@ -14,6 +14,7 @@ import { RockstarCardComponent } from './home/rockstar-card/rockstar-card.compon
 import { RockstarDetailsComponent } from './home/rockstar-details/rockstar-details.component';
 import { SearchComponent } from './search/search.component';
 import { TrackComponent } from './modal/track/track.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
 const appRoutes: Routes = [
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NoopAnimationsModule
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

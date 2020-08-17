@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, HostListener } from '@angular/core';
-import { fromEvent } from 'rxjs';
+import { fromEvent, from } from 'rxjs';
 import { map, debounceTime, filter } from 'rxjs/operators';
 import { AppService } from '../app.service';
 import { HttpClient } from '@angular/common/http';
@@ -10,7 +10,8 @@ import { Rockstar } from '../shared/rockstar.model';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  providers: [{ provide: Window, useValue: window }]
 })
 export class HomeComponent implements OnInit {
   @ViewChild('loadMore') loadMore: ElementRef;
@@ -22,18 +23,18 @@ export class HomeComponent implements OnInit {
   displayLimit: number = 9;
   genre: string = 'rock';
 
-  constructor(private service: AppService, private http: HttpClient) { }
+  constructor(private service: AppService, private http: HttpClient, private window: Window) { }
 
   ngOnInit() {
-    fromEvent(window, 'scroll')
+    fromEvent(this.window, 'scroll')
       .pipe(
-        map(event => window.scrollY),
-        filter(current => current >= document.body.clientHeight - window.innerHeight),
+        map(event => this.window.innerHeight),
         debounceTime(200)
-      ).subscribe(windowPositionY => {
+      ).subscribe((windowPositionY: number) => {
+
         let loadMoreElemY = this.loadMore.nativeElement.getBoundingClientRect().bottom;
         if (this.loadMore.nativeElement) {
-          if (loadMoreElemY < (windowPositionY - 400) && !this.loading && this.loadMorePosts) {
+          if ((loadMoreElemY - 100) <= (windowPositionY) && !this.loading && this.loadMorePosts) {
             this.loadMorePosts = this.service.checkForMorePosts();
             if (this.loadMorePosts) {
               this.loading = true;
@@ -55,6 +56,4 @@ export class HomeComponent implements OnInit {
         this.rockstars = this.service.loadMoreRockStars(this.displayLimit)
       })
   }
-
-
 }
