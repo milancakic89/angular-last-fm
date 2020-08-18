@@ -22,7 +22,7 @@ const appRoutes: Routes = [
   { path: 'albums/:rockstar', component: RockstarDetailsComponent },
   { path: '', component: HomeComponent }
 
-]
+];
 
 @NgModule({
   declarations: [

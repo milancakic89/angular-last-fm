@@ -1,7 +1,7 @@
 import { environment } from '../../environments/environment';
 
 export class ApiURL {
-  static getRockstarURL() {
+  static getRockstarURL(){
     return `http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag=rock&api_key=${environment.API_KEY}&format=json`;
   }
   static structureSearchURL(searchValue: string) {
@@ -18,7 +18,5 @@ export class ApiURL {
   }
   static structureRockstarDetails(rockstar: string) {
     return `http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${rockstar}&api_key=${environment.API_KEY}&format=json`;
-  }
-
-
+} 
 }

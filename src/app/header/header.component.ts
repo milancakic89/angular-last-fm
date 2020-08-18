@@ -7,16 +7,15 @@ import { AppService } from '../app.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-  isMenuOpened: boolean = false;
+  isMenuOpened = false;
   constructor(private service: AppService) { }
 
-  ngOnInit(): void {
-  }
   onToggleMenu() {
+    this.service.resetInfiniteScroll();
     this.isMenuOpened = !this.isMenuOpened;
-    this.service.resetInfiniteScroll()
+
   }
 
 }

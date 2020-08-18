@@ -1,25 +1,23 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ModalComponent } from './modal.component';
+import { AppService } from '../app.service';
+import { Album } from '../shared/album.model';
 
 describe('ModalComponent', () => {
   let component: ModalComponent;
-  let fixture: ComponentFixture<ModalComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ModalComponent ]
-    })
-    .compileComponents();
-  }));
-
+  let service: AppService;
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    service = new AppService(null)
+    component = new ModalComponent(service, null)
+  })
+  it('Should remove modal', () => {
+    component.isModalOpened = true;
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+     component.onRemoveModal()
+
+    expect(component.isModalOpened).toBe(false);
+  })
+  it('Should emit selected album ', ()=>{
+    
+  })
+
+})

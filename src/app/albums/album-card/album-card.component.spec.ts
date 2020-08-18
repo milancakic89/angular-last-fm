@@ -1,25 +1,20 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AlbumCardComponent } from './album-card.component';
+import { AppService } from '../../app.service';
+import { Album } from '../../shared/album.model';
+import { ModalComponent } from '../../modal/modal.component';
+
+
 
 describe('AlbumCardComponent', () => {
+  let service: AppService;
   let component: AlbumCardComponent;
-  let fixture: ComponentFixture<AlbumCardComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ AlbumCardComponent ]
-    })
-    .compileComponents();
-  }));
+  let modal: ModalComponent;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AlbumCardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    component = new AlbumCardComponent(null)
+    service = new AppService(null);
+    modal = new ModalComponent(null, null)
+  })
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+
+})

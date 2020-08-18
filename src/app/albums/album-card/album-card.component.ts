@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { AppService } from '../../app.service';
 import { Album } from '../../shared/album.model';
 
+
 @Component({
   selector: 'app-album-card',
   templateUrl: './album-card.component.html',
@@ -9,8 +10,10 @@ import { Album } from '../../shared/album.model';
 })
 export class AlbumCardComponent {
   @Input() album: Album;
+
   constructor(private service: AppService) { }
+
   onToggleModal() {
-    this.service.modalEmiter.emit(this.album)
+    this.service.modalEmiter.emit(this.album);
   }
 }

@@ -5,10 +5,9 @@
 export const environment = {
   production: false,
   API_KEY: '4a1224610aa8c67fd6ec10c15b1ed2d5',
-  rockstarURL: "",
-  albumsURL: "",
-  detailsURL: ""
-  
+  rockstarURL: '',
+  albumsURL: '',
+  detailsURL: ''
 };
 
 /*

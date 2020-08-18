@@ -1,3 +1,11 @@
 export class Rockstar {
-  constructor(public name: string, public rank: number, public image: [], public album?: []) { }
+  public name: string;
+  public rank: number;
+  public image;
+  constructor(name: string, rank: number, image) {
+    this.name = name;
+    this.rank = rank;
+    this.image = image;
+  }
+
 }

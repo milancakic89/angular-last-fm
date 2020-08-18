@@ -18,15 +18,13 @@ export class RockstarDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.rockstarParams = params.rockstar;
-    })
+    });
     this.http.get(ApiURL.structureAlbumsURL(this.rockstarParams))
       .subscribe((artistData: { topalbums: { album: Album[] } }) => {
-
         artistData.topalbums.album.forEach((album: Album) => {
-          this.rockstarAlbums.push(new Album(album.name, album.image, album.artist,))
-        })
-  
-      })
+            this.rockstarAlbums.push(new Album(album.name, album.image, album.artist,));
+        });
+      });
   }
 
 }

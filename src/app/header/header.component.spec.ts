@@ -1,30 +1,27 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HeaderComponent } from './header.component';
-
+import { AppService } from '../app.service';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [HeaderComponent],
-        schemas: [
-        CUSTOM_ELEMENTS_SCHEMA
-      ]
-    })
-      .compileComponents();
-  }));
+  let service: AppService;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    service = new AppService(null);
+    component = new HeaderComponent(service);
+
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it('Should set isMenuOpened property of HeaderComponent to true', () => {
 
-});
+    spyOn(component, "onToggleMenu").and.callFake(() => {
+      component.isMenuOpened = !component.isMenuOpened;
+    })
+
+    component.onToggleMenu()
+
+
+    expect(component.isMenuOpened).toBe(true)
+
+  })
+
+})
