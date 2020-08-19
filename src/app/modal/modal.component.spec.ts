@@ -1,13 +1,13 @@
 import { ModalComponent } from './modal.component';
-import { AppService } from '../app.service';
+import { ModalService } from './modal.service';
 import { Album } from '../shared/album.model';
 
 describe('ModalComponent', () => {
   let component: ModalComponent;
-  let service: AppService;
+  let service: ModalService;
   beforeEach(() => {
-    service = new AppService(null)
-    component = new ModalComponent(service, null)
+    service = new ModalService(null)
+    component = new ModalComponent(service)
   })
   it('Should remove modal', () => {
     component.isModalOpened = true;

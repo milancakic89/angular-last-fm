@@ -12,18 +12,16 @@ import { Album } from '../shared/album.model';
 export class AlbumsComponent implements OnInit {
   albums: Album[] = [];
 
-  constructor(private service: AlbumService,
-              private http: HttpClient) { }
+  constructor(private service: AlbumService) { }
 
   ngOnInit(): void {
-    this.http.get(ApiURL.getTopAlbumsURL()).subscribe((data: { albums: { album: Album[] } }) => {
+    this.service.getAlbums().subscribe((data: { albums: { album: Album[] } }) => {
       const albums = data.albums.album.splice(0, 9);
       const albumsToStore: Album[] = [];
       albums.forEach((album: Album) => {
        albumsToStore.push(new Album(album.name, album.image, album.artist));
       });
-      this.service.storeAlbums(albumsToStore);
-      this.albums = this.service.getAlbums();
+      this.albums = albumsToStore;
     });
 
    

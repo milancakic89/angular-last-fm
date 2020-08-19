@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
-import { AppService } from '../app.service';
+import { HomeService } from './home.service';
 import { HttpClient } from '@angular/common/http';
 import { Rockstar } from '../shared/rockstar.model';
 
@@ -22,11 +22,8 @@ export class HomeComponent implements OnInit {
   displayLimit: number = 9;
   genre = 'rock';
 
-  @HostListener('document:scroll', ['$event'])
-  testScroll(event) {
-  }
 
-  constructor(private service: AppService, private http: HttpClient, private window: Window) { }
+  constructor(private service: HomeService, private http: HttpClient, private window: Window) { }
 
   ngOnInit(): void {
     fromEvent(this.window, 'scroll')
@@ -53,8 +50,8 @@ export class HomeComponent implements OnInit {
       artistsArray.topartists.artist.forEach((rockstar: Rockstar) => {
         rockstars.push(new Rockstar(rockstar.name, rockstar['@attr'].rank, rockstar.image));
       });
-      this.service.saveRockStars(rockstars);
-      this.rockstars = this.service.loadMoreRockStars(this.displayLimit);
+      this.rockstars = rockstars;
+      this.service.saveRockstars(rockstars)
     });
 }
 }
