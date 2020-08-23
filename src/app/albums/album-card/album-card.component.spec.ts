@@ -1,24 +1,52 @@
 import { AlbumCardComponent } from './album-card.component';
-import { AppService } from '../../app.service';
-import { Album } from '../../shared/album.model';
-import { ModalComponent } from '../../modal/modal.component';
-import { TestBed } from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { ModalService } from 'src/app/modal/modal.service';
+import { EventEmitter, DebugElement } from '@angular/core';
+
 
 
 
 describe('AlbumCardComponent', () => {
-  let service: AppService;
   let component: AlbumCardComponent;
-  let modal: ModalComponent;
+  let fixture: ComponentFixture<AlbumCardComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AppService]
+      declarations: [AlbumCardComponent],
+      providers: [
+        { provide: ModalService, useClass: ServiceStub }
+      ]
     })
-    component = new AlbumCardComponent(null)
-    service = new AppService(null);
-    modal = new ModalComponent(null, null)
+      .compileComponents()
+
   })
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AlbumCardComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  })
+  it('Should create compoenent', () => {
+    expect(AlbumCardComponent).toBeTruthy()
+  })
+  it('Should contain a button', () => {
+    let btn = fixture.debugElement.query(By.css('button'));
+    expect(btn.nativeElement.textContent).toBe('Details')
+  })
+  it('Should execute onToggleModal when button is clicked', () => {
+    let btn = fixture.debugElement.query(By.css('button'))
+    const nativeButton: HTMLButtonElement = btn.nativeElement;
+    spyOn(component, "onToggleModal").and.callThrough()
+    nativeButton.click();
+    fixture.detectChanges()
+    expect(component.onToggleModal).toHaveBeenCalled()
+  })
+
   // stoped here
 
 })
+
+class ServiceStub {
+  modalEmiter = new EventEmitter<any>();
+}

@@ -1,23 +1,28 @@
 import { HeaderComponent } from './header.component';
-import { AppService } from '../app.service';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
-  let service: AppService;
+  let fixture: ComponentFixture<HeaderComponent>
+
 
   beforeEach(() => {
-    service = new AppService(null);
-    component = new HeaderComponent(service);
+    TestBed.configureTestingModule({
+      declarations: [HeaderComponent],
+    });
+    fixture = TestBed.createComponent(HeaderComponent);
+    component = fixture.componentInstance;
 
-  });
+  })
 
   it('Should set isMenuOpened property of HeaderComponent to true', () => {
+    let button = fixture.debugElement.nativeElement.querySelector('button');
 
-    spyOn(component, "onToggleMenu").and.callFake(() => {
-      component.isMenuOpened = !component.isMenuOpened;
-    })
 
-    component.onToggleMenu()
+    spyOn(component, "onToggleMenu").and.callThrough()
+
+    button.click();
 
 
     expect(component.isMenuOpened).toBe(true)

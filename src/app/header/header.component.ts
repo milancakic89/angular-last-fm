@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { AppService } from '../app.service';
+import { Component} from '@angular/core';
 
 
 @Component({
@@ -10,10 +9,9 @@ import { AppService } from '../app.service';
 export class HeaderComponent {
 
   isMenuOpened = false;
-  constructor(private service: AppService) { }
+
 
   onToggleMenu() {
-    this.service.resetInfiniteScroll();
     this.isMenuOpened = !this.isMenuOpened;
 
   }

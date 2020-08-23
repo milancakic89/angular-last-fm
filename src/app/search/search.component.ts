@@ -1,8 +1,7 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { from, fromEvent } from 'rxjs';
-import { debounceTime, map, distinctUntilChanged, switchMap, filter } from 'rxjs/operators';
-import { ApiURL } from '../shared/apiURL';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { SearchService } from './search.service';
+import { fromEvent } from 'rxjs';
+import { debounceTime, map, distinctUntilChanged } from 'rxjs/operators';
 import { Track } from '../shared/track.model';
 
 @Component({
@@ -18,7 +17,7 @@ export class SearchComponent implements AfterViewInit {
   searchValue = '';
   tracklist: Track[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private service: SearchService) { }
 
   ngAfterViewInit() {
     fromEvent<any>(this.input.nativeElement, 'keyup')
@@ -35,7 +34,7 @@ export class SearchComponent implements AfterViewInit {
     if (this.searchValue !== '') {
       this.showSearchDiv = true;
       this.tracklist = [];
-      this.http.get(ApiURL.structureSearchURL(this.searchValue))
+      this.service.onSearch(this.searchValue)
         .subscribe((data: { results: { trackmatches: { track: Track[] } } }) => {
           const tracks = data.results.trackmatches.track;
           tracks.forEach((track: Track) => {

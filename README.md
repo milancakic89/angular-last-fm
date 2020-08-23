@@ -1,27 +1,24 @@
-# AngularLastFm
+# Angular Last Fm
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.3.
+## Home page
 
-## Development server
+Displays 9 top rock stars. Reveals more rockstars as you scroll.
+Rockstars are shown as 320x320 cards. Card contains the name of an artist and rank.
+Card flips on hover, and the artist summary is shown, as well as View Albums button.
+View Albums leads to the page with Artist name and album list.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Albums page
 
-## Code scaffolding
+Album page contains top 9 albums. Card also flips on hover and Details button is shown.
+Clicking the button opens up the modal with Album name and list of songs for that album.
+Clicking on the song leads to the last.fm page for that song.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Header
 
-## Build
+Header contains two links, Home and Albums. Each leads to corresponding page, and a search bar.
+Search bar displays the list of song for the given text, clicking on the song also leads to last.fm for
+corresponding song.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Instructions
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Run npm install => ng serve  to run the application

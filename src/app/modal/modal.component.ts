@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalService } from './modal.service';
-import { HttpClient } from '@angular/common/http';
-import { ApiURL } from '../shared/apiURL';
 import { Track } from '../shared/track.model';
 import { Album } from '../shared/album.model';
 

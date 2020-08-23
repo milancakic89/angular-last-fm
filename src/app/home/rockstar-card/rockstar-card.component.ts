@@ -13,13 +13,13 @@ export class RockstarCardComponent {
   @Input() rockstar: Rockstar;
 
   details: Details;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private apiUrl: ApiURL) { }
 
 
   fetchDetails(): void {
     // request triggers on card hover and gets the details for individual card, only if there is no details allready
     if (!this.details) {
-      this.http.get(ApiURL.structureRockstarDetails(this.rockstar.name))
+      this.http.get(this.apiUrl.structureRockstarDetails(this.rockstar.name))
         .subscribe((data: { artist: { bio: { summary: string } } }) => {
           let details: string = data.artist.bio.summary.slice(0, 300);
           details += '...';

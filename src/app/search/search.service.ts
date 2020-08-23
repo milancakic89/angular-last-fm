@@ -1,15 +1,14 @@
-import { ApiURL } from './../shared/apiURL';
+import { ApiURL } from '../shared/apiURL';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 
 @Injectable({ providedIn: 'root' })
-export class AlbumService {
+export class SearchService {
 
   constructor(private http: HttpClient, private apiUrl: ApiURL) { }
 
-  getAlbums() {
-
-    return this.http.get(this.apiUrl.getTopAlbumsURL());
+  onSearch(search: string) {
+    return this.http.get(this.apiUrl.structureSearchURL(search));
   }
 }

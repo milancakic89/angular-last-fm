@@ -13,13 +13,15 @@ export class RockstarDetailsComponent implements OnInit {
 
   rockstarAlbums: Album[] = [];
   rockstarParams: string;
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute,
+              private http: HttpClient,
+              private apiUrl: ApiURL ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.rockstarParams = params.rockstar;
     });
-    this.http.get(ApiURL.structureAlbumsURL(this.rockstarParams))
+    this.http.get(this.apiUrl.structureAlbumsURL(this.rockstarParams))
       .subscribe((artistData: { topalbums: { album: Album[] } }) => {
         artistData.topalbums.album.forEach((album: Album) => {
             this.rockstarAlbums.push(new Album(album.name, album.image, album.artist,));

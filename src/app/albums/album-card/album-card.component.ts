@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { AppService } from '../../app.service';
-import { Album } from '../../shared/album.model';
 
+import { Album } from '../../shared/album.model';
+import { ModalService } from '../../modal/modal.service';
 
 @Component({
   selector: 'app-album-card',
@@ -11,7 +11,7 @@ import { Album } from '../../shared/album.model';
 export class AlbumCardComponent {
   @Input() album: Album;
 
-  constructor(private service: AppService) { }
+  constructor(private service: ModalService) { }
 
   onToggleModal() {
     this.service.modalEmiter.emit(this.album);

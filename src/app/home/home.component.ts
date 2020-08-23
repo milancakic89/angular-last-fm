@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { HomeService } from './home.service';
-import { HttpClient } from '@angular/common/http';
 import { Rockstar } from '../shared/rockstar.model';
 
 
@@ -12,7 +11,7 @@ import { Rockstar } from '../shared/rockstar.model';
   styleUrls: ['./home.component.scss'],
   providers: [{ provide: Window, useValue: window }]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit{
   @ViewChild('loadMore') loadMore: ElementRef;
   @ViewChild('home') home: ElementRef;
 
@@ -23,9 +22,12 @@ export class HomeComponent implements OnInit {
   genre = 'rock';
 
 
-  constructor(private service: HomeService, private http: HttpClient, private window: Window) { }
+  constructor(private service: HomeService, private window: Window) { }
 
   ngOnInit(): void {
+
+    this.service.resetInfiniteScroll();
+
     fromEvent(this.window, 'scroll')
       .pipe(
         map(event => this.window.innerHeight),
@@ -50,8 +52,8 @@ export class HomeComponent implements OnInit {
       artistsArray.topartists.artist.forEach((rockstar: Rockstar) => {
         rockstars.push(new Rockstar(rockstar.name, rockstar['@attr'].rank, rockstar.image));
       });
-      this.rockstars = rockstars;
+      this.rockstars = rockstars.splice(0, this.displayLimit);
       this.service.saveRockstars(rockstars)
     });
-}
+  }
 }
